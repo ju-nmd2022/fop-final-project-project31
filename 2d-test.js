@@ -1,14 +1,15 @@
 // 2D Test
 
 let readingInput = false;
-const gameSpeed = 20;
+let gameSpeed = 20;
 const cWidth = 800;
 const cHeight = 500;
 const cSize = 55;
 const g = 0.1;
 
 let points = [];
-const pointRadius = 4;
+const pointRadius = 5;
+const minPointRadius = 2;
 const maxPoints = 50;
 let objects = [];
 let slices = [];
@@ -18,7 +19,7 @@ const gr2 = { r: 0, g: 0, b: 0 };
 
 // Test objects
 let test = setInterval(() => {
-  switch (round(random(1, 2))) {
+  switch (round(random(1, 3))) {
     case 1:
       objects.push(
         new Cube(
@@ -27,7 +28,8 @@ let test = setInterval(() => {
           random(128, 255),
           random(128, 255),
           random(128, 255),
-          cSize
+          cSize,
+          "default"
         )
       );
       break;
@@ -41,6 +43,20 @@ let test = setInterval(() => {
           random(128, 255),
           random(128, 255),
           cSize
+        )
+      );
+      break;
+
+    case 3:
+      objects.push(
+        new Cube(
+          random(0.1 * cWidth, 0.9 * cWidth),
+          cHeight,
+          255,
+          0,
+          0,
+          cSize,
+          "slowmotion"
         )
       );
       break;
@@ -83,7 +99,9 @@ class Point {
       gr1.b * percentage + gr2.b
     );
     //strokeWeight((this.i / points.length) * pointRadius * 2);
-    strokeWeight(2 + percentage * pointRadius * 2);
+    strokeWeight(
+      minPointRadius + percentage * (pointRadius - minPointRadius) * 2
+    );
     if (this.i > 2) {
       curve(
         this.x,
@@ -117,6 +135,7 @@ class Point {
             g: objects[i].g,
             b: objects[i].b,
             type: objects[i].type,
+            mode: objects[i].mode,
           };
           slices.push(slice);
         }
@@ -128,7 +147,7 @@ class Point {
 }
 
 class Cube {
-  constructor(x, y, r, g, b, size) {
+  constructor(x, y, r, g, b, size, mode) {
     this.x = x;
     this.y = y;
     this.size = size;
@@ -138,6 +157,7 @@ class Cube {
     this.vel = cHeight / random(-60, -45);
     this.ang = random(1, 3);
     this.type = "cube";
+    this.mode = mode;
 
     if (this.x > cWidth / 2) this.ang = -this.ang;
   }
@@ -200,9 +220,9 @@ onmousedown = () => {
 };
 
 onmouseup = () => {
-  for (let i = 0; i < points.length; i++) {
-    if (points[i].i !== null) points[i].collision();
-  }
+  points.map((point) => {
+    if (point.i !== null) point.collision();
+  });
   createSlices();
   readingInput = false;
   points = [];
@@ -244,19 +264,22 @@ function createSlices() {
     switch (slices[i].type) {
       // Creates 1 to 4 smaller cubes from origin
       case "cube":
-        for (let j = 0; j < 2; j++) {
-          objects.push(
-            new Cube(
-              random(slices[i].x, slices[i].x + cSize),
-              random(slices[i].y, slices[i].y + cSize),
-              slices[i].r,
-              slices[i].g,
-              slices[i].b,
-              cSize / 1.8
-            )
-          );
-          objects[objects.length - 1].vel = random(-1, -5);
-          objects[objects.length - 1].ang = random(-2, 2);
+        if (slices[i].mode == "slowmotion") {
+        } else {
+          for (let j = 0; j < 2; j++) {
+            objects.push(
+              new Cube(
+                random(slices[i].x, slices[i].x + cSize),
+                random(slices[i].y, slices[i].y + cSize),
+                slices[i].r,
+                slices[i].g,
+                slices[i].b,
+                cSize / 1.8
+              )
+            );
+            objects[objects.length - 1].vel = random(-1, -5);
+            objects[objects.length - 1].ang = random(-2, 2);
+          }
         }
         slices.splice(i, 0);
         break;
