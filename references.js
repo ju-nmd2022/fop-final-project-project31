@@ -7,3 +7,4 @@
 // Simple sine wave animation https://www.youtube.com/watch?v=ktPnruyC6cc
 //Let's Cook Math Donuts in p5.js https://www.youtube.com/watch?v=iNA4yH7DAN8
 //Similar Game https://codepen.io/MillerTime/pen/BexBbE
+//Starfield Challenge background inspiration https://www.youtube.com/watch?v=17WoOqgXsRM
