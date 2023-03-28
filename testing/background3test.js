@@ -5,7 +5,6 @@ var zoff = 0;
 var fr;
 var particles = [];
 var flowfield;
-var v = new vector(Math.cos(angle), Math.sin(angle));
 
 function setup() {
   createCanvas(600, 400);
@@ -16,19 +15,20 @@ function setup() {
   flowfield = new Array(cols * rows);
 
 for (var i = 0; i < 300; i++) {
-    particles[i] = new Particle();}
+    particles[i] = new Particle();
+}
 }
 
 function draw() {
   var yoff = 0;
-  
+
   for (var y = 0; y < rows; y++) {
     var xoff = 0;
 
     for (var x = 0; x < cols; x++) {
       var index = x + y * cols;
       var angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
-      var v = vector.fromAngle(angle);
+      var v = createVector(Math.cos(angle), Math.sin(angle));
       v.setMag(1);
       flowfield[index] = v;
       xoff += inc;
