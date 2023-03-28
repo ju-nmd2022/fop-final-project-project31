@@ -35,7 +35,6 @@ function draw(){
 
   rotateY(90);
   rotateZ(65);
-  // rotateX(-millis()/2);
   beginShape();
   for(let theta = 0; theta < thetaMaxSlider.value(); theta += 0.2){
     let x = r * cos(theta);

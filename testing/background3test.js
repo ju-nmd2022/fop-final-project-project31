@@ -1,3 +1,5 @@
+//Testing out perlin noise flow field https://www.youtube.com/watch?v=BjoM9oKOAKY
+
 var inc = 0.1;
 var scl = 10;
 var cols, rows;
@@ -8,7 +10,7 @@ var flowfield;
 
 function setup() {
   createCanvas(600, 400);
-  background(51);
+  background(0);
   cols = floor(width / scl);
   rows = floor(height / scl);
   fr = createP('');

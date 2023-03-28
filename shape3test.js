@@ -11,7 +11,6 @@ function setup(){
   angleMode(DEGREES);
   colorMode(HSB);
   stroke(99, 80, 88);
-  // stroke(321, 0, 100);
   strokeWeight(3);
   noFill();
 
@@ -36,7 +35,6 @@ function setup(){
 }
 
 function draw(){
-  // background(230, 50, 15);
   clear();
   orbitControl(4, 4);//Mouse control
 

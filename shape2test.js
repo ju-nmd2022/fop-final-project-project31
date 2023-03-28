@@ -26,15 +26,14 @@ function setup(){
 }
 
 function draw(){
-  // background(230, 50, 15);
   clear();
-  orbitControl(4, 4);//Mouse control
+  //Mouse control
+  orbitControl(4, 4);
 
   rotateY(90);
   rotateZ(40);
 
   SphericalLissajous();
-  // SphericalLissajous_Animated();
 
   freqValue.html("frequency: " + freqSlider.value());
   freqValue2.html("frequency2: " + freqSlider2.value());
