@@ -1,5 +1,5 @@
 const pointRadius = 5;
-const minPointRadius = 2;
+const minPointRadius = 1;
 const maxPoints = 50;
 let readingInput = false;
 let points = [];
@@ -50,7 +50,7 @@ class Point {
   collision() {
     let alpha = (this.y * canvasWidth + this.x) * 4 + 3;
     if (pg.pixels[alpha] != 0) {
-      alert("Object found!");
+      alert("Object found at " + this.x + ", " + this.y);
       return true;
     }
     return false;

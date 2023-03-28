@@ -6,6 +6,10 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight);
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
   frameRate(30);
+
+  // Testing
+  objects.push(new Cube(100, 100, 255, 0, 0, defaultSize));
+  objects.push(new Cube(300, 100, 0, 255, 0, defaultSize));
 }
 
 function draw() {
@@ -13,7 +17,7 @@ function draw() {
   pg.clear();
 
   // Add graphics
-  drawCube();
+  for (let i = 0; i < objects.length; i++) objects[i].draw();
 
   // Background
   background(0, 0, 0);
