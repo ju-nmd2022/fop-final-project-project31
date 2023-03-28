@@ -48,8 +48,24 @@ class Point {
   }
 
   collision() {
-    let alpha = (this.y * canvasWidth + this.x) * 4 + 3;
-    if (pg.pixels[alpha] != 0) {
+    let d = pg.pixelDensity();
+    console.log(d);
+    let img = createImage(canvasWidth, canvasHeight);
+    img.copy(
+      pg,
+      -pg.width / 2,
+      -pg.height / 2,
+      pg.width,
+      pg.height,
+      0,
+      0,
+      pg.width,
+      pg.height
+    );
+    img.loadPixels();
+    let alpha = (this.y * d * canvasWidth * d + this.x * d) * 4 + 3;
+    console.log(this, alpha, img.pixels[alpha], img.get(this.x, this.y));
+    if (img.get(this.x, this.y)[3] != 0) {
       alert("Object found at " + this.x + ", " + this.y);
       return true;
     }
@@ -77,12 +93,14 @@ onmouseup = () => {
   readingInput = false;
 
   pg.loadPixels();
+  console.log("Load Pixels");
 
   for (let i = 0; i < points.length; i++) {
     if (points.length - i < maxPoints) {
       if (points[i].collision()) break;
     }
   }
+  //noLoop();
 
   points = [];
 };
