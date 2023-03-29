@@ -2,21 +2,6 @@ let objects = [];
 const defaultSize = 55;
 const g = 0.1;
 
-function drawCube() {
-  push();
-  pg.angleMode(DEGREES);
-
-  pg.stroke(255, 0, 0);
-  pg.fill(0, 255, 255);
-
-  pg.rotateX(3);
-  pg.rotateY(4);
-  pg.rotateZ(5);
-
-  pg.box(100);
-  pop();
-}
-
 class Cube {
   constructor(x, y, r, g, b, size) {
     this.x = x;
@@ -33,15 +18,17 @@ class Cube {
   }
 
   draw() {
-    pg.translate(-canvasWidth / 2 + this.x, -canvasHeight / 2 + this.y);
+    pg.push();
+    pg.translate(mouseX - canvasWidth / 2, mouseY - canvasHeight / 2);
 
-    pg.rotateX(frameCount * 0.04);
-    pg.rotateY(frameCount * 0.04);
+    // pg.rotateX(frameCount * 0.04);
+    // pg.rotateY(frameCount * 0.04);
 
-    pg.stroke(0);
+    pg.noStroke();
     pg.fill(this.r, this.g, this.b);
     pg.box(this.size);
     pg.reset();
+    pg.pop();
   }
 
   // movement() {
