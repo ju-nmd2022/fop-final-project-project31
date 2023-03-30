@@ -17,18 +17,18 @@ class Cube {
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
   }
 
-  draw() {
-    pg.push();
-    pg.translate(mouseX - canvasWidth / 2, mouseY - canvasHeight / 2);
+  draw(canvas) {
+    canvas.push();
+    canvas.translate(mouseX - canvasWidth / 2, mouseY - canvasHeight / 2);
 
-    // pg.rotateX(frameCount * 0.04);
-    // pg.rotateY(frameCount * 0.04);
+    canvas.rotateX(frameCount * 0.04);
+    canvas.rotateY(frameCount * 0.04);
 
-    pg.noStroke();
-    pg.fill(this.r, this.g, this.b);
-    pg.box(this.size);
-    pg.reset();
-    pg.pop();
+    canvas.noStroke();
+    canvas.ambientMaterial(this.r, this.g, this.b);
+    canvas.box(this.size);
+    canvas.reset();
+    canvas.pop();
   }
 
   // movement() {

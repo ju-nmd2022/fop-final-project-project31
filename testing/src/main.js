@@ -1,13 +1,15 @@
 const canvasHeight = 800;
 const canvasWidth = 800;
 let pg;
-//  let bg;
+let displayPG;
+let collisionImage;
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
-  //bg = createGraphics(canvasWidth, canvasHeight, P2D);
+  displayPG = createGraphics(canvasWidth, canvasHeight, WEBGL);
+  collisionImage = createImage(canvasWidth, canvasHeight);
 
   frameRate(30);
 
@@ -19,20 +21,26 @@ function setup() {
 function draw() {
   // Clear canvases
   pg.clear();
-  console.log("Clear Graphic");
-  //bg.clear();
+  displayPG.clear();
 
   // Create graphics
-  for (let i = 0; i < objects.length; i++) objects[i].draw();
-  console.log("Drawing Objects");
+  for (let i = 0; i < objects.length; i++) {
+    objects[i].draw(pg);
+    objects[i].draw(displayPG);
+  }
+
+  // Add lighting to canvas
+  // displayPG uses the lighting the user sees while pg is a solid color for detecting collision
+  pg.ambientLight(255);
+  displayPG.ambientLight(30);
+  displayPG.pointLight(40, 40, 40, -canvasWidth / 2, -canvasHeight / 2, 300);
+  displayPG.pointLight(40, 40, 40, canvasWidth / 2, canvasHeight / 2, 300);
 
   // Create background
-  //drawBackground();
   background(0, 0, 0);
 
   // Draw canvases as images
-  image(pg, 0, 0);
-  //image(bg, 0, 0);
+  image(displayPG, 0, 0);
 
   // Draw cursor
   if (readingInput) updateCursor();
