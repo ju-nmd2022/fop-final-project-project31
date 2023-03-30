@@ -48,24 +48,9 @@ class Point {
   }
 
   collision() {
-    let d = pg.pixelDensity();
-    console.log(d);
-    let img = createImage(canvasWidth, canvasHeight);
-    img.copy(
-      pg,
-      -pg.width / 2,
-      -pg.height / 2,
-      pg.width,
-      pg.height,
-      0,
-      0,
-      pg.width,
-      pg.height
-    );
-    img.loadPixels();
-    let alpha = (this.y * d * canvasWidth * d + this.x * d) * 4 + 3;
-    console.log(this, alpha, img.pixels[alpha], img.get(this.x, this.y));
-    if (img.get(this.x, this.y)[3] != 0) {
+    let pixel = collisionImage.get(this.x, this.y);
+    console.log(pixel);
+    if (pixel[3] != 0) {
       alert("Object found at " + this.x + ", " + this.y);
       return true;
     }
@@ -88,19 +73,28 @@ onmousedown = () => {
 };
 
 onmouseup = () => {
-  // Iterate the points array and check for non-transparent pixels, then reset the array.
+  // Copies the graphics, then checks the collision for each point
 
-  readingInput = false;
+  collisionImage.copy(
+    pg,
+    -pg.width / 2,
+    -pg.height / 2,
+    pg.width,
+    pg.height,
+    0,
+    0,
+    pg.width,
+    pg.height
+  );
 
-  pg.loadPixels();
-  console.log("Load Pixels");
+  collisionImage.loadPixels();
 
   for (let i = 0; i < points.length; i++) {
     if (points.length - i < maxPoints) {
       if (points[i].collision()) break;
     }
   }
-  //noLoop();
 
+  readingInput = false;
   points = [];
 };
