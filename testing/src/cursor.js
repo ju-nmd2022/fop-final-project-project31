@@ -1,6 +1,6 @@
 const pointRadius = 5;
 const minPointRadius = 1;
-const maxPoints = 50;
+const maxPoints = 30;
 let readingInput = false;
 let points = [];
 
@@ -21,9 +21,9 @@ class Point {
 
     // Color the point a range between two values
     stroke(
-      255 * percentage + 100,
-      255 * percentage + 100,
-      255 * percentage + 100
+      (224 - 99) * percentage + 99,
+      (103 - 173) * percentage + 173,
+      (75 - 219) * percentage + 219
     );
 
     // Thickness of point based on the percentage
@@ -44,17 +44,27 @@ class Point {
         points[this.i - 2].y
       );
     }
+
     pop();
   }
 
   collision() {
+    // Gets the rbga values in x and y position and removes matching object
     let pixel = collisionImage.get(this.x, this.y);
-    console.log(pixel);
+
     if (pixel[3] != 0) {
-      alert("Object found at " + this.x + ", " + this.y);
-      return true;
+      for (let i = 0; i < objects.length; i++) {
+        if (
+          objects[i].r == pixel[0] &&
+          objects[i].g == pixel[1] &&
+          objects[i].b == pixel[2]
+        ) {
+          objects.splice(i, 1);
+        }
+      }
+
+      createCanvasPixels();
     }
-    return false;
   }
 }
 
@@ -63,6 +73,7 @@ function updateCursor() {
 
   points.push(new Point());
 
+  // If i touch this everything breaks i dont wanna optimize it
   for (let i = 0; i < points.length; i++) {
     if (points.length - i < maxPoints) points[i].draw();
   }
@@ -75,6 +86,19 @@ onmousedown = () => {
 onmouseup = () => {
   // Copies the graphics, then checks the collision for each point
 
+  createCanvasPixels();
+
+  for (let i = 0; i < points.length; i++) {
+    if (points.length - i < maxPoints) {
+      points[i].collision();
+    }
+  }
+
+  readingInput = false;
+  points = [];
+};
+
+function createCanvasPixels() {
   collisionImage.copy(
     pg,
     -pg.width / 2,
@@ -88,13 +112,4 @@ onmouseup = () => {
   );
 
   collisionImage.loadPixels();
-
-  for (let i = 0; i < points.length; i++) {
-    if (points.length - i < maxPoints) {
-      if (points[i].collision()) break;
-    }
-  }
-
-  readingInput = false;
-  points = [];
-};
+}

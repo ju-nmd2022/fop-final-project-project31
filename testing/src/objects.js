@@ -19,14 +19,17 @@ class Cube {
 
   draw(canvas) {
     canvas.push();
-    canvas.translate(mouseX - canvasWidth / 2, mouseY - canvasHeight / 2);
+    canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
 
     canvas.rotateX(frameCount * 0.04);
     canvas.rotateY(frameCount * 0.04);
 
-    canvas.noStroke();
+    canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
+    canvas.strokeWeight(2);
     canvas.ambientMaterial(this.r, this.g, this.b);
+
     canvas.box(this.size);
+
     canvas.reset();
     canvas.pop();
   }
