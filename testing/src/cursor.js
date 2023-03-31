@@ -52,7 +52,7 @@ class Point {
     // Gets the rbga values in x and y position and removes matching object
     let pixel = collisionImage.get(this.x, this.y);
 
-    if (pixel[3] != 0) {
+    if (pixel[0] != 0 || pixel[1] != 0 || pixel[2] != 0) {
       for (let i = 0; i < objects.length; i++) {
         if (
           objects[i].r == pixel[0] &&
@@ -60,6 +60,7 @@ class Point {
           objects[i].b == pixel[2]
         ) {
           objects.splice(i, 1);
+          return;
         }
       }
 
@@ -96,6 +97,9 @@ onmouseup = () => {
 
   readingInput = false;
   points = [];
+
+  // Testing purposes can remove whenever
+  objects.push(new Cube(mouseX, mouseY, 0, 255, 255, defaultSize));
 };
 
 function createCanvasPixels() {

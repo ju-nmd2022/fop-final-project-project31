@@ -13,6 +13,7 @@ class Cube {
     this.vel = canvasHeight / random(-60, -45);
     this.ang = random(1, 3);
     this.type = "cube";
+    this.frame = 0;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
   }
@@ -21,14 +22,16 @@ class Cube {
     canvas.push();
     canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
 
-    canvas.rotateX(frameCount * 0.04);
-    canvas.rotateY(frameCount * 0.04);
+    canvas.rotateX(this.frame * 0.02);
+    canvas.rotateY(this.frame * 0.02);
 
     canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
     canvas.strokeWeight(2);
     canvas.ambientMaterial(this.r, this.g, this.b);
 
     canvas.box(this.size);
+
+    this.frame++;
 
     canvas.reset();
     canvas.pop();
