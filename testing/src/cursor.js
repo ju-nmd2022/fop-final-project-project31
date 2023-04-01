@@ -97,9 +97,6 @@ onmouseup = () => {
 
   readingInput = false;
   points = [];
-
-  // Testing purposes can remove whenever
-  objects.push(new Cube(mouseX, mouseY, 0, 255, 255, defaultSize));
 };
 
 function createCanvasPixels() {
