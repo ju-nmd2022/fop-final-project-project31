@@ -1,6 +1,7 @@
 let objects = [];
 const defaultSize = 55;
 const g = 0.1;
+const maxObjects = 12;
 
 class Cube {
   constructor(x, y, r, g, b, size) {
@@ -13,31 +14,56 @@ class Cube {
     this.vel = canvasHeight / random(-60, -45);
     this.ang = random(1, 3);
     this.type = "cube";
+    this.frame = 0;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
   }
 
   draw(canvas) {
     canvas.push();
-    canvas.translate(mouseX - canvasWidth / 2, mouseY - canvasHeight / 2);
+    canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
 
-    canvas.rotateX(frameCount * 0.04);
-    canvas.rotateY(frameCount * 0.04);
+    canvas.rotateX(this.frame * 0.02);
+    canvas.rotateY(this.frame * 0.02);
 
     canvas.noStroke();
-    canvas.ambientMaterial(this.r, this.g, this.b);
+    canvas.fill(this.r, this.g, this.b);
+
+    if (canvas == displayPG) {
+      canvas.ambientMaterial(this.r, this.g, this.b);
+      canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
+      canvas.strokeWeight(2);
+    }
+
     canvas.box(this.size);
+
+    this.frame++;
+
     canvas.reset();
     canvas.pop();
   }
 
-  // movement() {
-  //   if (this.vel < 0) this.vel *= 0.99;
-  //   if (this.vel > 7) this.vel = 7;
-  //   if (this.x + this.size >= canvasWidth || this.x <= 0) this.ang = -this.ang;
+  movement() {
+    if (this.vel < 0) this.vel *= 0.99;
 
-  //   this.vel += g;
-  //   this.y += this.vel;
-  //   this.x += this.ang;
-  // }
+    if (this.vel > 7) this.vel = 7;
+
+    if (this.x + this.size >= canvasWidth || this.x <= this.size)
+      this.ang = -this.ang;
+
+    this.vel += g;
+    this.y += this.vel;
+    this.x += this.ang;
+
+    // Remove object if below screen
+    if (this.y > canvasHeight + defaultSize * 2) objects.splice(this, 1);
+  }
+}
+
+function updateObjects() {
+  objects.map((i) => {
+    i.movement() == true;
+    i.draw(pg);
+    i.draw(displayPG);
+  });
 }
