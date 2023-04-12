@@ -20,6 +20,7 @@ class Point {
     let percentage = (this.i - points.length + maxPoints) / maxPoints;
 
     // Color the point a range between two values
+    noFill();
     stroke(
       (224 - 99) * percentage + 99,
       (103 - 173) * percentage + 173,
@@ -59,6 +60,16 @@ class Point {
           objects[i].g == pixel[1] &&
           objects[i].b == pixel[2]
         ) {
+          if (objects[i].size == defaultSize) {
+            const tempObject = objects[i];
+
+            objects.splice(i, 1);
+
+            createSlice(tempObject);
+
+            return;
+          }
+
           objects.splice(i, 1);
           return;
         }
@@ -74,9 +85,12 @@ function updateCursor() {
 
   points.push(new Point());
 
-  // If i touch this everything breaks i dont wanna optimize it
-  for (let i = 0; i < points.length; i++) {
-    if (points.length - i < maxPoints) points[i].draw();
+  for (
+    let i = points.length - 1;
+    i >= Math.max(0, points.length - maxPoints);
+    i--
+  ) {
+    points[i].draw();
   }
 }
 
@@ -89,10 +103,12 @@ onmouseup = () => {
 
   createCanvasPixels();
 
-  for (let i = 0; i < points.length; i++) {
-    if (points.length - i < maxPoints) {
-      points[i].collision();
-    }
+  for (
+    let i = points.length - 1;
+    i >= Math.max(0, points.length - maxPoints);
+    i--
+  ) {
+    points[i].collision();
   }
 
   readingInput = false;

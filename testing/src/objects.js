@@ -3,7 +3,7 @@ const defaultSize = 55;
 const g = 0.1;
 const maxObjects = 12;
 
-class Cube {
+class GameObject {
   constructor(x, y, r, g, b, size) {
     this.x = x;
     this.y = y;
@@ -11,12 +11,39 @@ class Cube {
     this.r = r;
     this.g = g;
     this.b = b;
-    this.vel = canvasHeight / random(-60, -45);
+    this.vel = this.y / random(-60, -45);
     this.ang = random(1, 3);
-    this.type = "cube";
     this.frame = 0;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
+  }
+
+  movement() {
+    if (this.vel < 0) this.vel *= 0.99;
+
+    if (this.vel > 7) this.vel = 7;
+
+    if (this.x + this.size >= canvasWidth || this.x <= this.size)
+      this.ang = -this.ang;
+
+    this.vel += g;
+    this.y += this.vel;
+    this.x += this.ang;
+  }
+
+  checkCanvas() {
+    // Checks if object is below the canvas
+    if (this.y > canvasHeight + defaultSize * 2) {
+      alert("You lost");
+      objects.splice(this, 1);
+    }
+  }
+}
+
+class Cube extends GameObject {
+  constructor(x, y, r, g, b, size) {
+    super(x, y, r, g, b, size);
+    this.type = "cube";
   }
 
   draw(canvas) {
@@ -42,28 +69,33 @@ class Cube {
     canvas.reset();
     canvas.pop();
   }
-
-  movement() {
-    if (this.vel < 0) this.vel *= 0.99;
-
-    if (this.vel > 7) this.vel = 7;
-
-    if (this.x + this.size >= canvasWidth || this.x <= this.size)
-      this.ang = -this.ang;
-
-    this.vel += g;
-    this.y += this.vel;
-    this.x += this.ang;
-
-    // Remove object if below screen
-    if (this.y > canvasHeight + defaultSize * 2) objects.splice(this, 1);
-  }
 }
 
 function updateObjects() {
-  objects.map((i) => {
-    i.movement() == true;
+  objects.forEach((i) => {
+    i.movement();
     i.draw(pg);
     i.draw(displayPG);
   });
+
+  objects.forEach((i) => {
+    i.checkCanvas();
+  });
+}
+
+function createSlice(object) {
+  // takes in object and pushes a number of smaller objects with the same properties
+  for (let i = 0; i < 2; i++) {
+    objects.push(
+      new Cube(
+        object.x,
+        object.y,
+        object.r,
+        object.g,
+        object.b,
+        defaultSize / 1.8
+      )
+    );
+    objects[0].ang = random(-3, 3);
+  }
 }
