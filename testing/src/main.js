@@ -1,19 +1,22 @@
-const canvasHeight = 800;
-const canvasWidth = 800;
+const canvasHeight = innerHeight;
+const canvasWidth = innerWidth;
 let pg;
 let displayPG;
 let collisionImage;
+let life;
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
   setupBackground();
 
+  life = 5;
+
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
   displayPG = createGraphics(canvasWidth, canvasHeight, WEBGL);
   collisionImage = createImage(canvasWidth, canvasHeight);
 
-  frameRate(40);
+  frameRate(60);
 
   // Creates cubes (temporary)
   setInterval(testFunction, 2000);
@@ -44,6 +47,11 @@ function draw() {
   // Draw canvas as an image
   image(displayPG, 0, 0);
 
+  // Draw hearts
+  for (let i = 0; i < life; i++) {
+    drawHeart(canvasWidth / 1.2 + i * 40, 50);
+  }
+
   // Draw cursor
   if (readingInput) updateCursor();
 }
@@ -65,4 +73,17 @@ function testFunction() {
       defaultSize
     )
   );
+}
+
+function drawHeart(x, y) {
+  push();
+  translate(x, y);
+  fill(232, 12, 12);
+  noStroke();
+  beginShape();
+  vertex(0, 0);
+  bezierVertex(-10, -10, -20, 20 / 3, 0, 20);
+  bezierVertex(20, 20 / 3, 10, -10, 0, 0);
+  endShape();
+  pop();
 }

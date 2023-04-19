@@ -1,7 +1,7 @@
 //Mechanics and idea behind was inspired by CodingTrain 10 minutes Starfield Challenge
 // https://www.youtube.com/watch?v=17WoOqgXsRM
 
-const numberOfAsteroids = 700;
+const numberOfAsteroids = 400;
 let asteroids = [];
 
 function setupBackground() {
