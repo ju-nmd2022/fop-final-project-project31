@@ -88,6 +88,22 @@ function drawHeart(x, y) {
   pop();
 }
 
+//create div that takes up the whole screen and is having some sort of an opacity so it fades and there is a button that you click and it restarts the whole thing
 function gameOver () {
- 
+const lostState = document.createElement("div");
+const contentElement = document.getElementById("content")
+
+lostState.setAttribute("id", "gameOver");
+
+const restartButton = document.createElement("button");
+restartButton.innerText = "Restart the Game";
+restartButton.addEventListener("click",  () => {
+contentElement.innerHTML = "";
+setup();
+});
+lostState.appendChild(restartButton);
+
+contentElement.appendChild(lostState);
 }
+
+

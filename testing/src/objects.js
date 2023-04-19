@@ -38,7 +38,7 @@ class GameObject {
       objects.splice(this, 1);
     }
 
-    if (life < 0) {
+    if (life < 1) {
     gameOver();
     }
   }
@@ -103,7 +103,6 @@ class Cube extends GameObject {
 
     if (canvas == displayPG) {
       canvas.ambientMaterial(this.r, this.g, this.b);
-      //canvas.texture(img);
       canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
       canvas.strokeWeight(2);
     }
