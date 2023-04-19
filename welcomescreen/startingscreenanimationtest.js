@@ -1,11 +1,13 @@
 let angle = 0;
+const canvasHeight = innerHeight;
+const canvasWidth = innerWidth;
 
 function preload() {
     img = loadImage('texture.png');
 }
  
 function setup() {
-    createCanvas(800, 800, WEBGL);
+    createCanvas(canvasWidth, canvasHeight, WEBGL);
 }
 
 function draw() {
@@ -14,7 +16,7 @@ function draw() {
 
     push();
     angle += 0.03;
-    translate(300, 300, 10);
+    translate(500, 300, 10);
 
     rotateX(angle);
     rotateZ(angle * 0.63);
@@ -27,7 +29,7 @@ function draw() {
     pop();
 
     push();
-    translate(-400, -350, 10);
+    translate(-800, -350, 10);
 
     rotateX(angle);
     rotateZ(angle * 0.63);

@@ -138,7 +138,7 @@ function createSlice(object) {
   switch (object.type) {
     case "cone":
       objectType = Cone;
-      iterations = 4;
+      iterations = 2;
       break;
 
     case "cube":

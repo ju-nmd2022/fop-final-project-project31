@@ -19,7 +19,7 @@ class Asteroid {
 
     this.velocity = createVector(0, 0);
 
-    this.ang = atan2(y - canvasHeight / 2, x - canvasWidth / 5);
+    this.ang = atan2(y - canvasHeight / 2, x - canvasWidth / 2);
   }
 
   isActive() {
