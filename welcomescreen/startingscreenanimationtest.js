@@ -38,7 +38,7 @@ function draw() {
     // fill(255);
     // textSize(20);
     // textFont("Sarabun");
-    // text("Press space to initiate the launching sequence...", 50, 70);
+    // text("Some random text here...", 50, 70);
     // textSize(17);
     // pop();
 }
