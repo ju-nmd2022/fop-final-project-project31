@@ -64,7 +64,7 @@ function testFunction() {
   if (objects.length >= maxObjects) return;
 
   objects.push(
-    new Cube(
+    new Cone(
       random(defaultSize * 2, canvasWidth - defaultSize * 2),
       canvasHeight + defaultSize,
       r,

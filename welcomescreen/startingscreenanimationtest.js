@@ -11,22 +11,28 @@ function setup() {
 function draw() {
     background(0, 0, 0);
     ambientLight(255);
+
     push();
     angle += 0.03;
     translate(300, 300, 10);
+
     rotateX(angle);
     rotateZ(angle * 0.63);
     rotateY(angle * 0.06);
+
     fill (0, 0, 255);
     normalMaterial();
     texture(img);
     box(500);
     pop();
+
     push();
     translate(-400, -350, 10);
+
     rotateX(angle);
     rotateZ(angle * 0.63);
     rotateY(angle * 0.06);
+
     fill (0, 0, 255);
     normalMaterial();
     texture(img);

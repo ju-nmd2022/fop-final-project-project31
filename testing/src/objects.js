@@ -44,11 +44,52 @@ class GameObject {
   }
 }
 
-class Cube extends GameObject {
+class Cone extends GameObject {
   constructor(x, y, r, g, b, size) {
     super(x, y, r, g, b, size);
-    this.type = "cube";
+    this.type = "cone";
   }
+  draw(canvas){
+    canvas.push();
+    canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
+
+    canvas.rotateX(this.frame * 0.02);
+    canvas.rotateY(this.frame * 0.02);
+
+    canvas.noStroke();
+    canvas.fill(this.r, this.g, this.b);
+
+    if (canvas == displayPG) {
+      canvas.ambientMaterial(this.r, this.g, this.b);
+    }
+
+    canvas.cone(this.size);
+
+    this.frame++;
+
+    canvas.reset();
+    canvas.pop();
+  }
+}
+
+function updateObjects() {
+  objects.forEach((i) => {
+    i.movement();
+    //canvases pg is the one i am detecking display pg is the ones i am actually seeing
+    i.draw(pg);
+    i.draw(displayPG);
+  });
+
+  objects.forEach((i) => {
+    i.checkCanvas();
+  });
+}
+
+class Cube extends GameObject {
+    constructor(x, y, r, g, b, size) {
+      super(x, y, r, g, b, size);
+      this.type = "cube";
+    }
 
   draw(canvas) {
     canvas.push();
@@ -90,9 +131,29 @@ function updateObjects() {
 
 function createSlice(object) {
   // takes in object and pushes a number of smaller objects with the same properties
-  for (let i = 0; i < 2; i++) {
+  // iterations how many times it goes through the for loop
+  let iterations = 0;
+  //that means that we put Cube object as a default one
+  let objectType = Cube;
+
+  switch (object.type) {
+    case "cone":
+      objectType = Cone;
+      iterations = 4;
+      break;
+
+    case "cube":
+      objectType = Cube;
+      iterations = 2;
+      break;
+    
+    default:
+      break;
+  }
+
+  for (let i = 0; i < iterations; i++) {
     objects.push(
-      new Cube(
+      new objectType(
         object.x,
         object.y,
         object.r,
