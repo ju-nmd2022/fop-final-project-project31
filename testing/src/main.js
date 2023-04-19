@@ -87,3 +87,7 @@ function drawHeart(x, y) {
   endShape();
   pop();
 }
+
+function gameOver () {
+ 
+}

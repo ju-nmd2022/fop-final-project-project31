@@ -39,7 +39,7 @@ class GameObject {
     }
 
     if (life < 0) {
-      alert("you lost");
+    gameOver();
     }
   }
 }
