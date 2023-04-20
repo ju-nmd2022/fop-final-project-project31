@@ -4,7 +4,7 @@ const g = 0.1;
 const maxObjects = 12;
 
 class GameObject {
-  constructor(x, y, r, g, b, size) {
+  constructor(x, y, r, g, b, size, texture) {
     this.x = x;
     this.y = y;
     this.size = size;
@@ -14,6 +14,7 @@ class GameObject {
     this.vel = this.y / random(-60, -45);
     this.ang = random(1, 3);
     this.frame = 0;
+    this.texture = texture;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
   }
@@ -39,17 +40,17 @@ class GameObject {
     }
 
     if (life < 1) {
-    gameOver();
+      gameOver();
     }
   }
 }
 
 class Cone extends GameObject {
-  constructor(x, y, r, g, b, size) {
-    super(x, y, r, g, b, size);
+  constructor(x, y, r, g, b, size, texture) {
+    super(x, y, r, g, b, size, texture);
     this.type = "cone";
   }
-  draw(canvas){
+  draw(canvas) {
     canvas.push();
     canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
 
@@ -60,7 +61,9 @@ class Cone extends GameObject {
     canvas.fill(this.r, this.g, this.b);
 
     if (canvas == displayPG) {
-      canvas.ambientMaterial(this.r, this.g, this.b);
+      canvas.texture(this.texture);
+
+      //canvas.ambientMaterial(this.r, this.g, this.b, 50);
     }
 
     canvas.cone(this.size);
@@ -86,10 +89,10 @@ function updateObjects() {
 }
 
 class Cube extends GameObject {
-    constructor(x, y, r, g, b, size) {
-      super(x, y, r, g, b, size);
-      this.type = "cube";
-    }
+  constructor(x, y, r, g, b, size) {
+    super(x, y, r, g, b, size);
+    this.type = "cube";
+  }
 
   draw(canvas) {
     canvas.push();
@@ -145,7 +148,7 @@ function createSlice(object) {
       objectType = Cube;
       iterations = 2;
       break;
-    
+
     default:
       break;
   }
@@ -158,9 +161,10 @@ function createSlice(object) {
         object.r,
         object.g,
         object.b,
-        defaultSize / 1.8
+        defaultSize / 1.8,
+        object.texture
       )
     );
-    objects[0].ang = random(-3, 3);
+    objects[objects.length - 1].ang = random(-3, 3);
   }
 }

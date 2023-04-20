@@ -5,6 +5,12 @@ let displayPG;
 let collisionImage;
 let life;
 
+let testImg;
+
+function preload() {
+  testImg = loadImage("./assets/texture.png");
+}
+
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
@@ -70,7 +76,8 @@ function testFunction() {
       r,
       g,
       b,
-      defaultSize
+      defaultSize,
+      testImg
     )
   );
 }
@@ -89,21 +96,19 @@ function drawHeart(x, y) {
 }
 
 //create div that takes up the whole screen and is having some sort of an opacity so it fades and there is a button that you click and it restarts the whole thing
-function gameOver () {
-const lostState = document.createElement("div");
-const contentElement = document.getElementById("content")
+function gameOver() {
+  const lostState = document.createElement("div");
+  const contentElement = document.getElementById("content");
 
-lostState.setAttribute("id", "gameOver");
+  lostState.setAttribute("id", "gameOver");
 
-const restartButton = document.createElement("button");
-restartButton.innerText = "Restart the Game";
-restartButton.addEventListener("click",  () => {
-contentElement.innerHTML = "";
-setup();
-});
-lostState.appendChild(restartButton);
+  const restartButton = document.createElement("button");
+  restartButton.innerText = "Restart the Game";
+  restartButton.addEventListener("click", () => {
+    contentElement.innerHTML = "";
+    setup();
+  });
+  lostState.appendChild(restartButton);
 
-contentElement.appendChild(lostState);
+  contentElement.appendChild(lostState);
 }
-
-
