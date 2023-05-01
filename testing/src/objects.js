@@ -89,8 +89,8 @@ function updateObjects() {
 }
 
 class Cube extends GameObject {
-  constructor(x, y, r, g, b, size) {
-    super(x, y, r, g, b, size);
+  constructor(x, y, r, g, b, size, texture) {
+    super(x, y, r, g, b, size, texture);
     this.type = "cube";
   }
 
@@ -105,9 +105,10 @@ class Cube extends GameObject {
     canvas.fill(this.r, this.g, this.b);
 
     if (canvas == displayPG) {
-      canvas.ambientMaterial(this.r, this.g, this.b);
+        canvas.texture(this.texture);
+      //canvas.ambientMaterial(this.r, this.g, this.b);
       canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
-      canvas.strokeWeight(2);
+      canvas.noStroke();
     }
 
     canvas.box(this.size);

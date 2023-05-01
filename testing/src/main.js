@@ -8,7 +8,7 @@ let life;
 let testImg;
 
 function preload() {
-  testImg = loadImage("./assets/texture.png");
+  testImg = loadImage("./assets/cubetexturecolorful.jpg");
 }
 
 function setup() {
@@ -70,7 +70,7 @@ function testFunction() {
   if (objects.length >= maxObjects) return;
 
   objects.push(
-    new Cone(
+    new Cube(
       random(defaultSize * 2, canvasWidth - defaultSize * 2),
       canvasHeight + defaultSize,
       r,
