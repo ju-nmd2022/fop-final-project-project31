@@ -1,14 +1,13 @@
 <html>
 <head>
   <link rel="stylesheet" type="" href="menu-screen/style.css">
-  <script src="mode.js"></script>
 </head>
 <body>
 <div id="wrapper">
     <div class="viewport">
       <div class="cube" id="cube">
         <!--CONE LEVEL-->
-        <div class="side" onclick="mode='cone'; window.location='http://google.com';">
+        <div class="side" onclick="sessionStorage.setItem('mode','cone'); window.location='gameplay/play.html';">
           <div class="cube-image"><img src="menu-screen/side3.png" alt=""></div>
         </div>
 
@@ -18,7 +17,7 @@
         </div>
 
         <!--MIXED LEVEL-->
-        <div class="side" onclick="mode='mixed'; window.location='http://google.com';">
+        <div class="side" onclick="sessionStorage.setItem('mode','mixed');  window.location='gameplay/play.html';">
           <div class="cube-image"><img src="menu-screen/side4.png" alt=""></div>
         </div>
 
@@ -26,12 +25,12 @@
         <div class="side"></div>
 
         <!--CUBE LEVEL-->
-        <div class="side" onclick="mode='cube'; window.location='http://google.com';">
+        <div class="side" onclick="sessionStorage.setItem('mode','cube'); window.location='http://google.com';">
           <div class="cube-image"><img src="menu-screen/side1.png" alt=""></div>
         </div>
 
         <!--BUBBLE LEVEL-->
-        <div class="side" onclick="mode='bubble'; window.location='http://google.com';">
+        <div class="side" onclick="sessionStorage.setItem('mode','bubble'); window.location='http://google.com';">
           <div class="cube-image active"><img src="menu-screen/side2.png" alt=""></div>
         </div>
       </div>
