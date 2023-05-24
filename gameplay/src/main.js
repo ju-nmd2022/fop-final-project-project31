@@ -23,7 +23,7 @@ function setup() {
   frameRate(60);
 
   // Creates cubes (temporary)
-  setInterval(testFunction, 2000);
+  setInterval(testFunction, 500);
 }
 
 function draw() {
@@ -95,6 +95,8 @@ function drawHeart(x, y) {
 
 //create div that takes up the whole screen and is having some sort of an opacity so it fades and there is a button that you click and it restarts the whole thing
 function gameOver() {
+  noLoop();
+
   const lostState = document.createElement("div");
   const contentElement = document.getElementById("content");
 
@@ -104,7 +106,7 @@ function gameOver() {
   restartButton.innerText = "Restart the Game";
   restartButton.addEventListener("click", () => {
     contentElement.innerHTML = "";
-    setup();
+    location.reload();
   });
   lostState.appendChild(restartButton);
 
