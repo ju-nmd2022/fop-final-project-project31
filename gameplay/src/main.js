@@ -7,6 +7,8 @@ let life;
 
 let testImg;
 
+let backgroundColor;
+
 function preload() {
   testImg = loadImage("./assets/cubetexturecolorful.jpg");
 }
@@ -16,14 +18,29 @@ function setup() {
 
   life = 5;
 
+  backgroundColor = {
+    r: random(50, 100),
+    g: random(50, 100),
+    b: random(50, 100),
+  };
+
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
   displayPG = createGraphics(canvasWidth, canvasHeight, WEBGL);
   collisionImage = createImage(canvasWidth, canvasHeight);
 
   frameRate(60);
 
-  // Creates cubes (temporary)
-  setInterval(testFunction, 500);
+  // Back to menu button
+  const textDiv = document.createElement("div");
+  textDiv.classList.add("back-button");
+  textDiv.innerHTML = "Back to main menu";
+  textDiv.addEventListener("click", () => {
+    window.location = "../index.html";
+  });
+  document.body.appendChild(textDiv);
+
+  // Create object loop
+  setInterval(createObjectLoop, 1500);
 }
 
 function draw() {
@@ -33,7 +50,7 @@ function draw() {
   displayPG.clear();
 
   // Create background
-  background(0);
+  background(backgroundColor.r, backgroundColor.g, backgroundColor.b);
 
   // Sets pg background to black because transparency doesn't save so deleted objects will still trigger collision
   pg.background(0);
@@ -60,24 +77,110 @@ function draw() {
   if (readingInput) updateCursor();
 }
 
-function testFunction() {
+// Gameplay loop
+// Pushes a new object depending on which mode selected
+function createObjectLoop() {
   let r = Math.round(Math.random() * (255 - 50) + 50);
   let g = Math.round(Math.random() * (255 - 50) + 50);
   let b = Math.round(Math.random() * (255 - 50) + 50);
 
   if (objects.length >= maxObjects) return;
 
-  objects.push(
-    new Cube(
-      random(defaultSize * 2, canvasWidth - defaultSize * 2),
-      canvasHeight + defaultSize,
-      r,
-      g,
-      b,
-      defaultSize,
-      testImg
-    )
-  );
+  switch (sessionStorage.getItem("mode")) {
+    case "cube":
+      objects.push(
+        new Cube(
+          random(defaultSize * 2, canvasWidth - defaultSize * 2),
+          canvasHeight + defaultSize,
+          r,
+          g,
+          b,
+          defaultSize,
+          testImg
+        )
+      );
+      break;
+
+    case "bubble":
+      objects.push(
+        new Bubble(
+          random(defaultSize * 2, canvasWidth - defaultSize * 2),
+          canvasHeight + defaultSize,
+          r,
+          g,
+          b,
+          defaultSize,
+          testImg
+        )
+      );
+      break;
+
+    case "cone":
+      objects.push(
+        new Cone(
+          random(defaultSize * 2, canvasWidth - defaultSize * 2),
+          canvasHeight + defaultSize,
+          r,
+          g,
+          b,
+          defaultSize,
+          testImg
+        )
+      );
+      break;
+
+    case "mixed":
+      switch (Math.round(random(1, 3))) {
+        case 1:
+          objects.push(
+            new Cube(
+              random(defaultSize * 2, canvasWidth - defaultSize * 2),
+              canvasHeight + defaultSize,
+              r,
+              g,
+              b,
+              defaultSize,
+              testImg
+            )
+          );
+          break;
+
+        case 2:
+          objects.push(
+            new Bubble(
+              random(defaultSize * 2, canvasWidth - defaultSize * 2),
+              canvasHeight + defaultSize,
+              r,
+              g,
+              b,
+              defaultSize,
+              testImg
+            )
+          );
+          break;
+
+        case 3:
+          objects.push(
+            new Cone(
+              random(defaultSize * 2, canvasWidth - defaultSize * 2),
+              canvasHeight + defaultSize,
+              r,
+              g,
+              b,
+              defaultSize,
+              testImg
+            )
+          );
+          break;
+
+        default:
+          break;
+      }
+      break;
+
+    default:
+      break;
+  }
 }
 
 function drawHeart(x, y) {

@@ -1,7 +1,7 @@
 let objects = [];
-const defaultSize = 55;
-const g = 0.1;
-const maxObjects = 12;
+const defaultSize = 80;
+const g = 0.05;
+const maxObjects = 16;
 
 class GameObject {
   constructor(x, y, r, g, b, size, texture) {
@@ -11,7 +11,7 @@ class GameObject {
     this.r = r;
     this.g = g;
     this.b = b;
-    this.vel = this.y / random(-60, -45);
+    this.vel = -innerHeight / random(55, 78);
     this.ang = random(1, 3);
     this.frame = 0;
     this.texture = texture;
@@ -66,7 +66,7 @@ class Cone extends GameObject {
       //canvas.ambientMaterial(this.r, this.g, this.b, 50);
     }
 
-    canvas.cone(this.size);
+    canvas.cone(this.size / 1.4, this.size / 1.2);
 
     this.frame++;
 
@@ -105,13 +105,41 @@ class Cube extends GameObject {
     canvas.fill(this.r, this.g, this.b);
 
     if (canvas == displayPG) {
-        canvas.texture(this.texture);
+      canvas.texture(this.texture);
       //canvas.ambientMaterial(this.r, this.g, this.b);
       canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
       canvas.noStroke();
     }
 
     canvas.box(this.size);
+
+    this.frame++;
+
+    canvas.reset();
+    canvas.pop();
+  }
+}
+
+class Bubble extends GameObject {
+  constructor(x, y, r, g, b, size, texture) {
+    super(x, y, r, g, b, size, texture);
+    this.type = "bubble";
+  }
+
+  draw(canvas) {
+    canvas.push();
+    canvas.translate(this.x - canvasWidth / 2, this.y - canvasHeight / 2);
+
+    canvas.noStroke();
+
+    if (canvas == displayPG) {
+      canvas.ambientMaterial(180, 220, 255);
+      canvas.noStroke();
+    } else {
+      canvas.fill(this.r, this.g, this.b);
+    }
+
+    canvas.sphere(this.size / 1.5);
 
     this.frame++;
 
@@ -142,11 +170,16 @@ function createSlice(object) {
   switch (object.type) {
     case "cone":
       objectType = Cone;
-      iterations = 2;
+      iterations = 3;
       break;
 
     case "cube":
       objectType = Cube;
+      iterations = 4;
+      break;
+
+    case "bubble":
+      objectType = Bubble;
       iterations = 2;
       break;
 
@@ -166,6 +199,9 @@ function createSlice(object) {
         object.texture
       )
     );
-    objects[objects.length - 1].ang = random(-3, 3);
+    objects[objects.length - 1].x += random(-20, 20);
+    objects[objects.length - 1].y += random(-20, 20);
+    objects[objects.length - 1].ang = random(-2, 2);
+    objects[objects.length - 1].vel = random(-4, -8);
   }
 }

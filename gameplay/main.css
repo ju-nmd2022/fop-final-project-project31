@@ -1,41 +1,54 @@
 html,
 body {
-    margin: 0px;
+  margin: 0px;
 }
-  
+
 #gameOver {
-width: 100vw;
-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-position: fixed;
-background-color: gray;
-opacity: 0.1;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
+  position: fixed;
+  background-color: gray;
+  opacity: 0.1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-text-align: center;
-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 button {
-	display: block;
-	position: relative;
-	width: 300px;
-	padding: 12px 20px;
-	background: transparent;
-	border: none;
-	outline: none;
-	font-family: monospace;
-	font-weight: bold;
-	font-size: 2rem;
-	color: #fff;
-	opacity: 0.75;
-	transition: opacity 0.3s;
+  display: block;
+  position: relative;
+  width: 300px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #fff;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+.back-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 30px;
+  font: 20px Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.back-button:hover {
+  cursor: pointer;
 }
