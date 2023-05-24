@@ -3,13 +3,22 @@
   }
   
   body {
-    background: #252525;
+    background: #1c1c1c;
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
     font-weight: 300;
   }
   
   #wrapper {
     padding-top: 10%;
+    transform: translate(300px, 0);
+  }
+
+  #logo {
+    position: fixed;
+    width: 50vw;
+  }
+  #logo img {
+    width: 50vw;
   }
   
   .viewport {
@@ -34,9 +43,8 @@
     height: 300px; /* Change to make it bigger */
     width: 300px; /* Change to make it bigger */
     background-color: #9b3244;
-    
   }
-  
+
   .cube > div {
     width: 300px; /* Change to make it bigger */
     height: 300px; /* Change to make it bigger */
