@@ -14,8 +14,6 @@ function preload() {
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
-  setupBackground();
-
   life = 5;
 
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
@@ -35,7 +33,7 @@ function draw() {
   displayPG.clear();
 
   // Create background
-  drawBackground();
+  background(0);
 
   // Sets pg background to black because transparency doesn't save so deleted objects will still trigger collision
   pg.background(0);
