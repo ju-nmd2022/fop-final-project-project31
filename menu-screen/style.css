@@ -15,11 +15,12 @@
 
   #logo {
     position: fixed;
+    top: 0px;
+    left: 0px;
     width: 50vw;
   }
-  #logo img {
+  #logo > img {
     width: 50vw;
-    height: auto;
   }
   
   .viewport {
