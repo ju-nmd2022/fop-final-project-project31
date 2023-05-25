@@ -1,5 +1,5 @@
 let objects = [];
-const defaultSize = 80;
+const defaultSize = innerWidth / 14;
 const g = 0.05;
 const maxObjects = 16;
 
