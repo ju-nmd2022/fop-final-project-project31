@@ -142,12 +142,12 @@ function gameOver() {
   lostState.setAttribute("id", "gameOver");
 
   const restartButton = document.createElement("button");
-  restartButton.innerText = "Restart the Game";
+  // \n = new line
+  restartButton.innerText = "You got\n"+ score + " points.\n\nRestart";
   restartButton.addEventListener("click", () => {
     contentElement.innerHTML = "";
     location.reload();
   });
   lostState.appendChild(restartButton);
-
   contentElement.appendChild(lostState);
 }

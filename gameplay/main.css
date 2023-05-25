@@ -8,8 +8,7 @@ body {
   height: 100vh;
 
   position: fixed;
-  background-color: gray;
-  opacity: 0.1;
+  background-color: #1c1c1c;
   top: 0;
   right: 0;
   bottom: 0;
@@ -22,12 +21,19 @@ body {
 
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
+
+  animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.15; }
 }
 
 button {
   display: block;
   position: relative;
-  width: 300px;
+  width: 200px;
   padding: 12px 20px;
   background: transparent;
   border: none;
@@ -45,10 +51,12 @@ button {
   top: 0;
   left: 0;
   padding: 30px;
-  font: 20px Arial, sans-serif;
+  font-size: 20px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .back-button:hover {
   cursor: pointer;
 }
+
