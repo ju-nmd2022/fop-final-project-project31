@@ -196,8 +196,14 @@ function createSlice(object) {
         object.texture
       )
     );
-    objects[objects.length - 1].x += random(-20, 20);
-    objects[objects.length - 1].y += random(-20, 20);
+    objects[objects.length - 1].x += random(
+      -defaultSize / 1.5,
+      defaultSize / 1.5
+    );
+    objects[objects.length - 1].y += random(
+      -defaultSize / 1.5,
+      defaultSize / 1.5
+    );
     objects[objects.length - 1].ang = random(-2, 2);
     objects[objects.length - 1].vel = random(-4, -8);
   }
