@@ -4,6 +4,7 @@ let pg;
 let displayPG;
 let collisionImage;
 let life;
+let score;
 
 let testImg;
 
@@ -16,12 +17,13 @@ function preload() {
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
-  life = 5;
+  if (sessionStorage.getItem("mode") != "mixed") life = 5;
+  score = 0;
 
   backgroundColor = {
-    r: random(50, 100),
-    g: random(50, 100),
-    b: random(50, 100),
+    r: random(40, 80),
+    g: random(40, 80),
+    b: random(40, 80),
   };
 
   pg = createGraphics(canvasWidth, canvasHeight, WEBGL);
@@ -72,6 +74,9 @@ function draw() {
   for (let i = 0; i < life; i++) {
     drawHeart(canvasWidth / 1.2 + i * 40, 50);
   }
+
+  // Draw score
+  //drawScore();
 
   // Draw cursor
   if (readingInput) updateCursor();

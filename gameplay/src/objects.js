@@ -39,7 +39,7 @@ class GameObject {
       objects.splice(this, 1);
     }
 
-    if (life < 1) {
+    if (life < 1 && sessionStorage.getItem("mode") != "mixed") {
       gameOver();
     }
   }
