@@ -82,7 +82,7 @@ function draw() {
 
   // Draw hearts
   for (let i = 0; i < life; i++) {
-    drawHeart(canvasWidth / 1.2 + i * 40, 50);
+    drawHeart(canvasWidth / 1.1, 50 + i * 60);
   }
 
   // Draw score
@@ -122,6 +122,7 @@ function createObjectLoop() {
 function drawHeart(x, y) {
   push();
   translate(x, y);
+  scale(1.3);
   fill(232, 12, 12);
   noStroke();
   beginShape();
