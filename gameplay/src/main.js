@@ -1,13 +1,22 @@
 const canvasHeight = innerHeight;
 const canvasWidth = innerWidth;
+
+// Displays
 let pg;
 let displayPG;
+
 let collisionImage;
+
 let life;
 let score;
 
+// Images
 let cubeTexture;
 let bgGradient;
+
+// Audio
+let sliceSound = new Audio("./assets/slice.mp3");
+let popSound = new Audio("./assets/pop.mp3");
 
 let mode = sessionStorage.getItem("mode");
 let modes = {
@@ -86,7 +95,7 @@ function draw() {
   }
 
   // Draw score
-  drawScore();
+  if (mode != "mixed") drawScore();
 
   // Draw cursor
   if (readingInput) updateCursor();

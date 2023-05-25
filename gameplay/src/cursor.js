@@ -63,17 +63,23 @@ class Point {
           if (objects[i].size == defaultSize) {
             const tempObject = objects[i];
 
-            objects.splice(i, 1);
-
+            // Add 10 score (bigger cubes)
             score += 10;
+
+            objects.splice(i, 1);
+            popSound.play();
 
             createSlice(tempObject);
 
             return;
           }
 
+          // Add 5 score (smaller cubes)
           score += 5;
+
           objects.splice(i, 1);
+          popSound.play();
+
           return;
         }
       }
@@ -103,6 +109,8 @@ onmousedown = () => {
 
 onmouseup = () => {
   // Copies the graphics, then checks the collision for each point
+
+  sliceSound.play();
 
   createCanvasPixels();
 
