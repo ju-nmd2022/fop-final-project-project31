@@ -8,6 +8,13 @@ let score;
 
 let testImg;
 
+let mode = sessionStorage.getItem("mode");
+let modes = {
+  cube: Cube,
+  bubble: Bubble,
+  cone: Cone,
+};
+
 let backgroundColor;
 
 function preload() {
@@ -17,7 +24,7 @@ function preload() {
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
 
-  if (sessionStorage.getItem("mode") != "mixed") life = 5;
+  if (mode != "mixed") life = 5;
   score = 0;
 
   backgroundColor = {
@@ -91,101 +98,23 @@ function createObjectLoop() {
 
   if (objects.length >= maxObjects) return;
 
-  switch (sessionStorage.getItem("mode")) {
-    case "cube":
-      objects.push(
-        new Cube(
-          random(defaultSize * 2, canvasWidth - defaultSize * 2),
-          canvasHeight + defaultSize,
-          r,
-          g,
-          b,
-          defaultSize,
-          testImg
-        )
-      );
-      break;
+  let tmp_mode = sessionStorage.getItem("mode");
 
-    case "bubble":
-      objects.push(
-        new Bubble(
-          random(defaultSize * 2, canvasWidth - defaultSize * 2),
-          canvasHeight + defaultSize,
-          r,
-          g,
-          b,
-          defaultSize,
-          testImg
-        )
-      );
-      break;
-
-    case "cone":
-      objects.push(
-        new Cone(
-          random(defaultSize * 2, canvasWidth - defaultSize * 2),
-          canvasHeight + defaultSize,
-          r,
-          g,
-          b,
-          defaultSize,
-          testImg
-        )
-      );
-      break;
-
-    case "mixed":
-      switch (Math.round(random(1, 3))) {
-        case 1:
-          objects.push(
-            new Cube(
-              random(defaultSize * 2, canvasWidth - defaultSize * 2),
-              canvasHeight + defaultSize,
-              r,
-              g,
-              b,
-              defaultSize,
-              testImg
-            )
-          );
-          break;
-
-        case 2:
-          objects.push(
-            new Bubble(
-              random(defaultSize * 2, canvasWidth - defaultSize * 2),
-              canvasHeight + defaultSize,
-              r,
-              g,
-              b,
-              defaultSize,
-              testImg
-            )
-          );
-          break;
-
-        case 3:
-          objects.push(
-            new Cone(
-              random(defaultSize * 2, canvasWidth - defaultSize * 2),
-              canvasHeight + defaultSize,
-              r,
-              g,
-              b,
-              defaultSize,
-              testImg
-            )
-          );
-          break;
-
-        default:
-          break;
-      }
-      break;
-
-    default:
-      break;
+  if (tmp_mode == "mixed") {
+    tmp_mode = Object.keys(modes)[Math.round(random(0, 2))];
   }
+
+  objects.push(
+    new modes[tmp_mode](
+      random(defaultSize * 2, canvasWidth - defaultSize * 2),
+      canvasHeight + defaultSize,
+      r,
+      g,
+      b,
+      defaultSize,
+      testImg
+    )
+  );
 }
 
 function drawHeart(x, y) {

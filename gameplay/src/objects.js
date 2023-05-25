@@ -39,7 +39,7 @@ class GameObject {
       objects.splice(this, 1);
     }
 
-    if (life < 1 && sessionStorage.getItem("mode") != "mixed") {
+    if (life < 1 && mode != "mixed") {
       gameOver();
     }
   }
@@ -170,17 +170,17 @@ function createSlice(object) {
   switch (object.type) {
     case "cone":
       objectType = Cone;
-      iterations = 3;
+      iterations = 1;
       break;
 
     case "cube":
       objectType = Cube;
-      iterations = 4;
+      iterations = 2;
       break;
 
     case "bubble":
       objectType = Bubble;
-      iterations = 2;
+      iterations = 0;
       break;
 
     default:
