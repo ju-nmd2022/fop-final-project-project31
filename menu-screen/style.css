@@ -12,10 +12,9 @@ body {
 }
 
 #wrapper {
-  padding-top: 10%;
   position: fixed;
   left: 60vw;
-  top: 0;
+  top: 30vh;
 }
 
 #logo {
@@ -24,9 +23,12 @@ body {
   left: 0px;
   width: 50vw;
   height: 100vw;
+  padding: 20px;
 }
 #logo > img {
   width: 50vw;
+}
+#logo > p {
 }
 
 .viewport {
