@@ -43,6 +43,7 @@ p {
     background-color: #ad374a;
     border-radius: 25px;
     border: none;
+    color: #1c1c1c;
   }
 
   button:hover {
