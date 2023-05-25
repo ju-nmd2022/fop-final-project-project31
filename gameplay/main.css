@@ -26,14 +26,18 @@ body {
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 0.15; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.15;
+  }
 }
 
 button {
   display: block;
   position: relative;
-  width: 200px;
+  width: 500px;
   padding: 12px 20px;
   background: transparent;
   border: none;
@@ -59,4 +63,3 @@ button {
 .back-button:hover {
   cursor: pointer;
 }
-

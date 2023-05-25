@@ -65,11 +65,14 @@ class Point {
 
             objects.splice(i, 1);
 
+            score += 10;
+
             createSlice(tempObject);
 
             return;
           }
 
+          score += 5;
           objects.splice(i, 1);
           return;
         }

@@ -86,7 +86,7 @@ function draw() {
   }
 
   // Draw score
-  //drawScore();
+  drawScore();
 
   // Draw cursor
   if (readingInput) updateCursor();
@@ -143,11 +143,22 @@ function gameOver() {
 
   const restartButton = document.createElement("button");
   // \n = new line
-  restartButton.innerText = "You got\n"+ score + " points.\n\nRestart";
+  restartButton.innerText = "YOU GOT\n" + score + " POINTS\n\nRESTART";
   restartButton.addEventListener("click", () => {
     contentElement.innerHTML = "";
     location.reload();
   });
   lostState.appendChild(restartButton);
   contentElement.appendChild(lostState);
+}
+
+function drawScore() {
+  push();
+  textFont("Tahoma");
+  textStyle(BOLD);
+  textSize(30);
+  fill(255);
+  noStroke();
+  text(score, canvasWidth / 2, 70);
+  pop();
 }
