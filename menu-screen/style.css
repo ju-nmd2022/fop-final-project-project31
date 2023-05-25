@@ -29,6 +29,27 @@ body {
   width: 50vw;
 }
 #logo > p {
+  max-width: 45vw;
+  padding: 50px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+  padding-top: 0px;
+}
+
+#logo > h1 {
+  max-width: 45vw;
+  padding: 25px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  padding-bottom: 5px;
+}
+
+#logo span {
+  color: #ad374a;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 16px;
 }
 
 .viewport {
