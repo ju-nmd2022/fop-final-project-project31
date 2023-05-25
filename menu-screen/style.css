@@ -13,7 +13,9 @@ body {
 
 #wrapper {
   padding-top: 10%;
-  transform: translate(400px, 0);
+  position: fixed;
+  left: 60vw;
+  top: 0;
 }
 
 #logo {
