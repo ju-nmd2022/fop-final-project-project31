@@ -6,7 +6,8 @@ let collisionImage;
 let life;
 let score;
 
-let testImg;
+let cubeTexture;
+let bgGradient;
 
 let mode = sessionStorage.getItem("mode");
 let modes = {
@@ -18,7 +19,8 @@ let modes = {
 let backgroundColor;
 
 function preload() {
-  testImg = loadImage("./assets/cubetexturecolorful.jpg");
+  cubeTexture = loadImage("./assets/texture.png");
+  bgGradient = loadImage("./assets/background-gradient.png");
 }
 
 function setup() {
@@ -60,6 +62,7 @@ function draw() {
 
   // Create background
   background(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+  image(bgGradient, 0, 0);
 
   // Sets pg background to black because transparency doesn't save so deleted objects will still trigger collision
   pg.background(0);
@@ -111,8 +114,7 @@ function createObjectLoop() {
       r,
       g,
       b,
-      defaultSize,
-      testImg
+      defaultSize
     )
   );
 }

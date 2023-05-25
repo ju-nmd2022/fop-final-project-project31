@@ -14,7 +14,6 @@ class GameObject {
     this.vel = -innerHeight / random(55, 78);
     this.ang = random(1, 3);
     this.frame = 0;
-    this.texture = texture;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
   }
@@ -46,8 +45,8 @@ class GameObject {
 }
 
 class Cone extends GameObject {
-  constructor(x, y, r, g, b, size, texture) {
-    super(x, y, r, g, b, size, texture);
+  constructor(x, y, r, g, b, size) {
+    super(x, y, r, g, b, size);
     this.type = "cone";
   }
   draw(canvas) {
@@ -61,9 +60,7 @@ class Cone extends GameObject {
     canvas.fill(this.r, this.g, this.b);
 
     if (canvas == displayPG) {
-      canvas.texture(this.texture);
-
-      //canvas.ambientMaterial(this.r, this.g, this.b, 50);
+      canvas.ambientMaterial(this.r, this.g, this.b, 50);
     }
 
     canvas.cone(this.size / 1.4, this.size / 1.2);
@@ -89,9 +86,10 @@ function updateObjects() {
 }
 
 class Cube extends GameObject {
-  constructor(x, y, r, g, b, size, texture) {
-    super(x, y, r, g, b, size, texture);
+  constructor(x, y, r, g, b, size) {
+    super(x, y, r, g, b, size);
     this.type = "cube";
+    this.texture = cubeTexture;
   }
 
   draw(canvas) {
@@ -106,9 +104,8 @@ class Cube extends GameObject {
 
     if (canvas == displayPG) {
       canvas.texture(this.texture);
-      //canvas.ambientMaterial(this.r, this.g, this.b);
       canvas.stroke(this.r / 1.5, this.g / 1.5, this.b / 1.5);
-      canvas.noStroke();
+      canvas.strokeWeight(3);
     }
 
     canvas.box(this.size);
@@ -121,8 +118,8 @@ class Cube extends GameObject {
 }
 
 class Bubble extends GameObject {
-  constructor(x, y, r, g, b, size, texture) {
-    super(x, y, r, g, b, size, texture);
+  constructor(x, y, r, g, b, size) {
+    super(x, y, r, g, b, size);
     this.type = "bubble";
   }
 
