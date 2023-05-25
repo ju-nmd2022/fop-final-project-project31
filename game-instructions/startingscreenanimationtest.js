@@ -11,12 +11,12 @@ function setup() {
 }
 
 function draw() {
-  background(0, 0, 0);
+  background("#1c1c1c");
   ambientLight(255);
 
   push();
   angle += 0.03;
-  translate(500, 300, 10);
+  translate(530, 250, 10);
 
   rotateX(angle);
   rotateZ(angle * 0.63);
@@ -39,14 +39,5 @@ function draw() {
   normalMaterial();
   texture(img);
   box(150);
-  pop();
-  push();
-  fill(255);
-  rect(-200, -200, 50, 90);
-  fill(255);
-  textSize(20);
-  textFont("Bitter");
-  text("Some random text here...", 50, 70);
-  textSize(17);
   pop();
 }
