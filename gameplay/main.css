@@ -1,0 +1,65 @@
+html,
+body {
+  margin: 0px;
+}
+
+#gameOver {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  background-color: #1c1c1c;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+
+  animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+button {
+  display: block;
+  position: relative;
+  width: 500px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #fff;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+.back-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 30px;
+  font-size: 20px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.back-button:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,139 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #1c1c1c;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+#wrapper {
+  position: fixed;
+  left: 60vw;
+  top: 30vh;
+}
+
+#logo {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 50vw;
+  height: 100vw;
+  padding: 20px;
+}
+#logo > img {
+  width: 50vw;
+}
+#logo > p {
+  max-width: 45vw;
+  padding: 50px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+  padding-top: 0px;
+}
+
+#logo > h1 {
+  max-width: 45vw;
+  padding: 50px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  padding-bottom: 5px;
+}
+
+#logo span {
+  color: #ad374a;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.viewport {
+  perspective: 800px;
+  perspective-origin: 50% 200px;
+  transform: scale(0.8, 0.8);
+}
+
+.cube {
+  position: relative;
+  margin: 0 auto;
+  height: 400px; /* Change to make it bigger */
+  width: 400px; /* Change to make it bigger */
+  transform-style: preserve-3d;
+  transform: rotateX(136deg) rotateY(1122deg);
+}
+
+.cube > div {
+  overflow: hidden;
+  position: absolute;
+  opacity: 0.95;
+  height: 400px; /* Change to make it bigger */
+  width: 400px; /* Change to make it bigger */
+  background-color: #9b3244;
+}
+
+.cube > div {
+  width: 400px; /* Change to make it bigger */
+  height: 400px; /* Change to make it bigger */
+  line-height: 400px; /* Change to make it bigger */
+  margin: auto;
+}
+
+.cube > div img {
+  width: 400px;
+}
+
+.cube > div:hover {
+  cursor: pointer;
+}
+
+.cube > div:active {
+  cursor: pointer;
+}
+
+.cube > div:first-child {
+  transform: rotateX(90deg) translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(2) {
+  transform: translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(3) {
+  transform: rotateY(90deg) translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(4) {
+  transform: rotateY(180deg) translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(5) {
+  transform: rotateY(-90deg) translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+.cube > div:nth-child(6) {
+  transform: rotateX(-90deg) rotate(180deg) translateZ(200px); /* Change to make it bigger */
+  outline: 1px solid transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0) rotateX(0);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
+.cube {
+  animation: spin 6s infinite linear;
+}

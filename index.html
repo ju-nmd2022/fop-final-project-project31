@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="" href="menu-screen/style.css" />
+  </head>
+  <body>
+    <div id="logo">
+      <img src="menu-screen/logo.png" alt="" />
+      <h1>Are you ready for a 2D and 3D shapes cutting game adventure?</h1>
+      <p>
+Join the legendary game in which you land in the object’s world! Nothing looks the same anymore. You are surrounded by different figures, some of them might be very misleading and dangerous.
+Your main task is to destroy the objects by cutting them before they cut you off.
+<br><br>Shape Slicer is a great arcade game inspired by Fruit Ninja games created by the legendary team that developed Lunar Lander and To-do List.
+
+<br><br><span>Press on the corresponding shape on the cube to start playing!
+<br>To get to know more, click on How to play for the detailed instructions.</span> 
+        </p>
+    </div>
+    <div id="wrapper">
+      <div class="viewport">
+        <div class="cube" id="cube">
+          <!--CONE LEVEL-->
+          <div
+            class="side"
+            onclick="sessionStorage.setItem('mode','cone'); window.location='gameplay/play.html';"
+          >
+            <div class="cube-image">
+              <img src="menu-screen/side3.png" alt="" />
+            </div>
+          </div>
+
+          <!--INSTRUCTIONS-->
+          <div class="side" onclick="window.location='game-instructions/how-to-play-screen.html';">
+            <div class="cube-image">
+              <img src="menu-screen/side5.png" alt="" />
+            </div>
+          </div>
+
+          <!--MIXED LEVEL-->
+          <div
+            class="side"
+            onclick="sessionStorage.setItem('mode','mixed');  window.location='gameplay/play.html';"
+          >
+            <div class="cube-image">
+              <img src="menu-screen/side4.png" alt="" />
+            </div>
+          </div>
+
+          <!--INVISIBLE SIDE (EMPTY DIV BUT NEEDED FOR THE SPINNING CUBE TO BE CREATED!!!)-->
+          <div class="side"></div>
+
+          <!--CUBE LEVEL-->
+          <div
+            class="side"
+            onclick="sessionStorage.setItem('mode','cube'); window.location='gameplay/play.html';"
+          >
+            <div class="cube-image">
+              <img src="menu-screen/side1.png" alt="" />
+            </div>
+          </div>
+
+          <!--BUBBLE LEVEL-->
+          <div
+            class="side"
+            onclick="sessionStorage.setItem('mode','bubble'); window.location='gameplay/play.html';"
+          >
+            <div class="cube-image active">
+              <img src="menu-screen/side2.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
