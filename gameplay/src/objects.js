@@ -1,6 +1,6 @@
 let objects = [];
 const defaultSize = innerWidth / 14;
-const g = 0.05;
+const g = 0.1;
 const maxObjects = 16;
 
 class GameObject {
@@ -11,8 +11,8 @@ class GameObject {
     this.r = r;
     this.g = g;
     this.b = b;
-    this.vel = -innerHeight / random(55, 78);
-    this.ang = random(1, 3);
+    this.vel = (-innerHeight * 1.2) / random(55, 78);
+    this.ang = random(2, 5);
     this.frame = 0;
 
     if (this.x > canvasWidth / 2) this.ang = -this.ang;
